@@ -8,7 +8,7 @@ rspamd_config.MAILCOW_AUTH = {
 }
 
 modify_subject_map = rspamd_config:add_map({
-  url = 'http://172.22.1.251:8081/tags.php',
+  url = 'http://nginx:8081/tags.php',
   type = 'map',
   description = 'Map of users to use subject tags for'
 })

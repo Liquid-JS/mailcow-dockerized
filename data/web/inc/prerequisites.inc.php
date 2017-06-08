@@ -18,7 +18,7 @@ $tfa = new RobThree\Auth\TwoFactorAuth('mailcow UI');
 
 // Redis
 $redis = new Redis();
-$redis->connect('redis-mailcow', 6379);
+$redis->connect('redis', 6379);
 
 // PDO
 // Calculate offset

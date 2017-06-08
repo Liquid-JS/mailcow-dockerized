@@ -5,7 +5,7 @@ if [[ ! -f mailcow.conf ]]; then
 fi
 
 echo -n "Checking Postfix service... "
-docker-compose ps -q postfix-mailcow > /dev/null 2>&1
+docker-compose ps -q postfix > /dev/null 2>&1
 
 if [[ $? -ne 0 ]]; then
         echo "failed"
@@ -35,7 +35,7 @@ if [[ ${1} == "reset" ]]; then
 	sed -i "s/^smtp\_sasl\_auth\_enable.*/smtp\_sasl\_auth\_enable\ \=\ no/" data/conf/postfix/main.cf
 	# Also delete the plaintext password file
 	rm -f data/conf/postfix/smarthost_passwd*
-	docker-compose exec postfix-mailcow postfix reload
+	docker-compose exec postfix postfix reload
 	# Exit with dc exit code
 	exit $?
 else
@@ -67,10 +67,10 @@ else
 	fi
 	if [[ ! -z ${3} ]]; then
 		echo ${1} ${3}:${4} > data/conf/postfix/smarthost_passwd
-		docker-compose exec postfix-mailcow postmap /opt/postfix/conf/smarthost_passwd
+		docker-compose exec postfix postmap /opt/postfix/conf/smarthost_passwd
 	fi
-	docker-compose exec postfix-mailcow chown root:postfix /opt/postfix/conf/smarthost_passwd /opt/postfix/conf/smarthost_passwd.db
-	docker-compose exec postfix-mailcow chmod 660 /opt/postfix/conf/smarthost_passwd /opt/postfix/conf/smarthost_passwd.db
-	docker-compose exec postfix-mailcow postfix reload
+	docker-compose exec postfix chown root:postfix /opt/postfix/conf/smarthost_passwd /opt/postfix/conf/smarthost_passwd.db
+	docker-compose exec postfix chmod 660 /opt/postfix/conf/smarthost_passwd /opt/postfix/conf/smarthost_passwd.db
+	docker-compose exec postfix postfix reload
 	exit $?
 fi

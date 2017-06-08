@@ -5196,7 +5196,7 @@ function get_logs($container, $lines = 100) {
 		return false;
 	}
   $lines = intval($lines);
-  if ($container == "dovecot-mailcow") {
+  if ($container == "dovecot") {
     if ($data = $redis->lRange('DOVECOT_MAILLOG', 1, $lines)) {
       foreach ($data as $json_line) {
         $data_array[] = json_decode($json_line, true);
@@ -5204,7 +5204,7 @@ function get_logs($container, $lines = 100) {
       return $data_array;
     }
   }
-  if ($container == "postfix-mailcow") {
+  if ($container == "postfix") {
     if ($data = $redis->lRange('POSTFIX_MAILLOG', 1, $lines)) {
       foreach ($data as $json_line) {
         $data_array[] = json_decode($json_line, true);
@@ -5212,7 +5212,7 @@ function get_logs($container, $lines = 100) {
       return $data_array;
     }
   }
-  if ($container == "sogo-mailcow") {
+  if ($container == "sogo") {
     if ($data = $redis->lRange('SOGO_LOG', 1, $lines)) {
       foreach ($data as $json_line) {
         $data_array[] = json_decode($json_line, true);

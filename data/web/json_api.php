@@ -68,10 +68,10 @@ if (isset($_SESSION['mailcow_cc_role']) || isset($_SESSION['pending_mailcow_cc_u
               case "dovecot":
                 if (isset($extra) && !empty($extra)) {
                   $extra = intval($extra);
-                  $logs = get_logs('dovecot-mailcow', $extra);
+                  $logs = get_logs('dovecot', $extra);
                 }
                 else {
-                  $logs = get_logs('dovecot-mailcow', -1);
+                  $logs = get_logs('dovecot', -1);
                 }
                 if (isset($logs) && !empty($logs)) {
                   echo json_encode($logs, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
@@ -83,10 +83,10 @@ if (isset($_SESSION['mailcow_cc_role']) || isset($_SESSION['pending_mailcow_cc_u
               case "postfix":
                 if (isset($extra) && !empty($extra)) {
                   $extra = intval($extra);
-                  $logs = get_logs('postfix-mailcow', $extra);
+                  $logs = get_logs('postfix', $extra);
                 }
                 else {
-                  $logs = get_logs('postfix-mailcow', -1);
+                  $logs = get_logs('postfix', -1);
                 }
                 if (isset($logs) && !empty($logs)) {
                   echo json_encode($logs, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
@@ -98,10 +98,10 @@ if (isset($_SESSION['mailcow_cc_role']) || isset($_SESSION['pending_mailcow_cc_u
               case "sogo":
                 if (isset($extra) && !empty($extra)) {
                   $extra = intval($extra);
-                  $logs = get_logs('sogo-mailcow', $extra);
+                  $logs = get_logs('sogo', $extra);
                 }
                 else {
-                  $logs = get_logs('sogo-mailcow', -1);
+                  $logs = get_logs('sogo', -1);
                 }
                 if (isset($logs) && !empty($logs)) {
                   echo json_encode($logs, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
